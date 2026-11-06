@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business English practice (units 9-12)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#f0f7ff', 100: '#e0effe', 600: '#1d4ed8', 700: '#1e40af', 800: '#1e3a8a', 900: '#0f172a' },
+            accent: { 50: '#fffbe3', 100: '#fef3c7', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #334155; color: #334155; }
+    .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    @media print {
+      body { background-color: #ffffff !important; color: #000000 !important; }
+      header, footer, #unit-tabs, #bottom-nav-controls, .no-print { display: none !important; }
+      main { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+      .print-only { display: block !important; }
+      .shadow-md, .shadow-sm, .shadow-2xs { box-shadow: none !important; }
+      .border { border-color: #d1d5db !important; }
+    }
+    .print-only { display: none; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar">
+
+  <div class="print-only p-6 border-b-2 border-slate-900 mb-6">
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-extrabold text-slate-900">Business English - student assessment report</h1>
+        <p class="text-xs text-slate-500 mt-1">Units 9, 10, 11 & 12</p>
+      </div>
+      <div class="text-right text-xs text-slate-600">
+        <p id="print-date" class="font-semibold"></p>
+      </div>
+    </div>
+  </div>
+
+  <header class="bg-slate-900 text-white shadow-md border-b-4 border-amber-500">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div>
+        <p class="text-xs sm:text-sm font-bold tracking-widest text-amber-400 uppercase">Teacher Verónica Hermida</p>
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mt-0.5">Business English practice test</h1>
+      </div>
+      <span class="text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 rounded-full border border-slate-700">Units 9 – 12</span>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-6 flex-grow w-full">
+    
+    <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <h2 class="text-lg sm:text-xl font-bold text-slate-800">Practice exercises</h2>
+        <p class="text-slate-500 text-xs sm:text-sm mt-0.5">Select an option for each question and check your answers.</p>
+      </div>
+      <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+        <div class="bg-slate-100 px-4 py-2 rounded-xl text-xs sm:text-sm text-slate-700 font-semibold border border-slate-200">
+          Score: <span id="overall-score" class="text-brand-700 font-bold text-base">0</span> / <span id="total-possible">0</span>
+        </div>
+        <button onclick="resetAllTests()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-3.5 py-2 rounded-xl font-semibold transition flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right"></i> Reset
+        </button>
+      </div>
+    </div>
+
+    <div class="flex overflow-x-auto gap-2 pb-2 mb-4 custom-scrollbar" id="unit-tabs"></div>
+    <div id="unit-content-container" class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden"></div>
+
+    <div id="bottom-nav-controls" class="flex justify-between items-center mt-6">
+      <button id="prev-unit-btn" onclick="navigateUnit(-1)" class="px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm transition flex items-center gap-2 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
+        <i class="fa-solid fa-arrow-left"></i> Previous
+      </button>
+
+      <div class="text-xs sm:text-sm font-bold text-slate-600">
+        <span id="current-unit-display">Unit 9</span>
+      </div>
+
+      <button id="next-unit-btn" onclick="navigateUnit(1)" class="px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-semibold text-sm transition flex items-center gap-2 shadow-sm">
+        Next <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-4 text-center text-xs mt-8 border-t border-slate-800">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="font-medium text-slate-300">Business English elementary practice</p>
+    </div>
+  </footer>
+
+  <script>
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      if (arr.length > 1 && arr.join(' ') === array.join(' ')) {
+        const temp = arr[0];
+        arr[0] = arr[arr.length - 1];
+        arr[arr.length - 1] = temp;
+      }
+      return arr;
+    }
+
+    const rawUnitsData = [
+      {
+        id: 9,
+        number: "9",
+        title: "Unit 9: Competition",
+        image: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?q=80&w=1200&auto=format&fit=crop",
+        imageAlt: "Supermarket products",
+        tasks: [
+          {
+            title: "Part 1: Match the supermarkets",
+            instruction: "Match each detail with the corresponding supermarket chain based on the text:",
+            contextText: "FreshMarket and SuperSaver are two competing supermarket chains. FreshMarket offers high-quality organic products, but its prices are higher than SuperSaver's. SuperSaver sells organic milk for $3.50, while FreshMarket charges $4.20. FreshMarket is expanding faster than SuperSaver this year.",
+            questions: [
+              {
+                id: "u9_t1_q1",
+                type: "matching",
+                question: "",
+                pairs: [
+                  { item: "Organic milk price: $3.50", answer: "SuperSaver" },
+                  { item: "Organic milk price: $4.20", answer: "FreshMarket" },
+                  { item: "Expanding faster this year", answer: "FreshMarket" },
+                  { item: "Lower general prices", answer: "SuperSaver" }
+                ],
+                options: ["FreshMarket", "SuperSaver"]
+              }
+            ]
+          },
+          {
+            title: "Part 2: Complete the sentences",
+            instruction: "Select the correct option or write the price in words:",
+            questions: [
+              {
+                id: "u9_t2_q1",
+                type: "mcq",
+                question: "1. 'Our main competitor's prices are _____ than ours.'",
+                options: ["cheaper", "more cheap", "cheap"],
+                answer: "cheaper"
+              },
+              {
+                id: "u9_t2_q2",
+                type: "fill",
+                question: "2. Write $4.20 in English words: Four dollars and __________ cents.",
+                answer: "twenty",
+                placeholder: "Type price word..."
+              },
+              {
+                id: "u9_t3_q3",
+                type: "mcq",
+                question: "3. 'FreshMarket is _____ popular than SuperSaver among premium buyers.'",
+                options: ["more", "most", "as"],
+                answer: "more"
+              }
+            ]
+          },
+          {
+            title: "Part 3: Build the sentences",
+            instruction: "Click the word blocks to arrange the sentence:",
+            questions: [
+              {
+                id: "u9_t3_q1",
+                type: "order",
+                originalWords: ["Our", "product", "is", "better", "than", "the", "competition"],
+                question: "1. Sentence:",
+                answer: "Our product is better than the competition"
+              },
+              {
+                id: "u9_t3_q2",
+                type: "order",
+                originalWords: ["This", "model", "costs", "fifteen", "dollars", "fifty"],
+                question: "2. Price sentence:",
+                answer: "This model costs fifteen dollars fifty"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 10,
+        number: "10",
+        title: "Unit 10: Teamwork",
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+        imageAlt: "Teamwork",
+        tasks: [
+          {
+            title: "Part 1: Fill in the paragraph",
+            instruction: "Select the correct option for each gap:",
+            questions: [
+              {
+                id: "u10_t1_q1",
+                type: "cloze",
+                template: "Sarah is the [blank1] designer on our team, and David is the [blank2] communicator. In my [blank3], we should recruit one more software developer. That is the [blank4] option for our next project.",
+                blanks: [
+                  { id: "blank1", options: ["most experienced", "more experienced", "experience"], answer: "most experienced" },
+                  { id: "blank2", options: ["fastest", "faster", "fast"], answer: "fastest" },
+                  { id: "blank3", options: ["opinion", "idea", "thought"], answer: "opinion" },
+                  { id: "blank4", options: ["best", "good", "better"], answer: "best" }
+                ]
+              }
+            ]
+          },
+          {
+            title: "Part 2: Read & verify",
+            instruction: "Read and select False or True:",
+            contextText: "Our team has just won the annual innovation award! Sarah is the most experienced designer on our team, and David is the fastest communicator. To improve our workflow for next month, I think we should recruit one more software developer.",
+            questions: [
+              {
+                id: "u10_t2_q1",
+                type: "tf",
+                question: "1. The team recently received an annual innovation award.",
+                answer: "True"
+              },
+              {
+                id: "u10_t2_q2",
+                type: "tf",
+                question: "2. The team leader wants to reduce the number of developers.",
+                answer: "False"
+              },
+              {
+                id: "u10_t2_q3",
+                type: "tf",
+                question: "3. Sarah is considered the fastest communicator in the group.",
+                answer: "False"
+              }
+            ]
+          },
+          {
+            title: "Part 3: Classify responses",
+            instruction: "Classify each phrase under Good News or Bad News:",
+            questions: [
+              {
+                id: "u10_t3_q1",
+                type: "categorize",
+                categories: ["Good News", "Bad News"],
+                items: [
+                  { text: "That's fantastic news!", category: "Good News" },
+                  { text: "Oh, I'm sorry to hear that.", category: "Bad News" },
+                  { text: "Congratulations on the results!", category: "Good News" },
+                  { text: "That's a shame.", category: "Bad News" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 11,
+        number: "11",
+        title: "Unit 11: Travel",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop",
+        imageAlt: "Business travel",
+        tasks: [
+          {
+            title: "Part 1: Order the conversation",
+            instruction: "Assign the correct order (1 to 6) to the lines in the dialogue:",
+            questions: [
+              {
+                id: "u11_t1_q1",
+                type: "dialogue_order",
+                dialogueSteps: [
+                  { speaker: "Receptionist", text: "Good afternoon, Grand Hotel. How can I help you today?" },
+                  { speaker: "Client", text: "Hello, I would like to book a single room for three nights starting next Tuesday." },
+                  { speaker: "Receptionist", text: "Certainly. We have a deluxe room available. Would you like breakfast included?" },
+                  { speaker: "Client", text: "Yes, please. Does the room also have high-speed Wi-Fi?" },
+                  { speaker: "Receptionist", text: "Yes, Wi-Fi is free in all our rooms. May I have your full name for the reservation?" },
+                  { speaker: "Client", text: "It's Arthur Miller. Thank you very much for your assistance." }
+                ]
+              }
+            ]
+          },
+          {
+            title: "Part 2: Travel questions",
+            instruction: "Answer the questions based on the travel details:",
+            contextText: "Mr. Miller is traveling to Frankfurt next Tuesday to attend the European Tech Expo. He is going to stay at the Grand Hotel for three nights. He requested a double room with high-speed Wi-Fi to prepare his sales presentations.",
+            questions: [
+              {
+                id: "u11_t2_q1",
+                type: "mcq",
+                question: "1. Why is Mr. Miller going to Frankfurt?",
+                options: ["To attend the European Tech Expo", "To take a vacation", "To buy new equipment"],
+                answer: "To attend the European Tech Expo"
+              },
+              {
+                id: "u11_t2_q2",
+                type: "mcq",
+                question: "2. 'I would like to book a room _____ three nights.'",
+                options: ["for", "at", "in"],
+                answer: "for"
+              },
+              {
+                id: "u11_t2_q3",
+                type: "fill",
+                question: "3. 'He traveled to Berlin __________ meet the new investors.'",
+                answer: "to",
+                placeholder: "Type missing word..."
+              }
+            ]
+          },
+          {
+            title: "Part 3: Word scramble",
+            instruction: "Arrange the word blocks in the correct order:",
+            questions: [
+              {
+                id: "u11_t3_q1",
+                type: "order",
+                originalWords: ["Does", "the", "room", "include", "free", "breakfast"],
+                question: "1. Reception question:",
+                answer: "Does the room include free breakfast"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 12,
+        number: "12",
+        title: "Unit 12: Schedules",
+        image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop",
+        imageAlt: "Schedules",
+        tasks: [
+          {
+            title: "Part 1: Prepositions (in / on / at)",
+            instruction: "Select the appropriate preposition for each time expression:",
+            questions: [
+              {
+                id: "u12_t1_q1",
+                type: "matrix",
+                rows: [
+                  { expression: "Monday, May 10th", options: ["in", "on", "at"], answer: "on" },
+                  { expression: "9:00 AM", options: ["in", "on", "at"], answer: "at" },
+                  { expression: "September", options: ["in", "on", "at"], answer: "in" },
+                  { expression: "the morning", options: ["in", "on", "at"], answer: "in" }
+                ]
+              }
+            ]
+          },
+          {
+            title: "Part 2: Recent actions (Present Perfect)",
+            instruction: "Choose the correct option:",
+            contextText: "We have had a very busy schedule this week. On Monday, May 10th, the team finished the quarterly financial report. I have already called the supplier to confirm delivery, and Ms. Davis has just signed the agreement.",
+            questions: [
+              {
+                id: "u12_t2_q1",
+                type: "mcq",
+                question: "1. 'I _____ already sent the updated presentation to the board.'",
+                options: ["have", "has", "am"],
+                answer: "have"
+              },
+              {
+                id: "u12_t2_q2",
+                type: "mcq",
+                question: "2. 'She _____ just finished reviewing the annual budget.'",
+                options: ["has", "have", "is"],
+                answer: "has"
+              },
+              {
+                id: "u12_t2_q3",
+                type: "mcq",
+                question: "3. 'We have _____ organized the schedule for next quarter.'",
+                options: ["already", "never", "did"],
+                answer: "already"
+              },
+              {
+                id: "u12_t2_q4",
+                type: "fill",
+                question: "4. 'They have __________ (confirm) the meeting time with the client.'",
+                answer: "confirmed",
+                placeholder: "Type past participle form..."
+              }
+            ]
+          },
+          {
+            title: "Part 3: Confirming appointments",
+            instruction: "Arrange the blocks to form the sentence:",
+            questions: [
+              {
+                id: "u12_t3_q1",
+                type: "order",
+                originalWords: ["We", "have", "already", "confirmed", "the", "appointment"],
+                question: "1. Present perfect sentence:",
+                answer: "We have already confirmed the appointment"
+              },
+              {
+                id: "u12_t3_q2",
+                type: "order",
+                originalWords: ["The", "meeting", "starts", "at", "ten", "thirty"],
+                question: "2. Confirmation:",
+                answer: "The meeting starts at ten thirty"
+              }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const unitsData = rawUnitsData.map(unit => {
+      const clonedUnit = JSON.parse(JSON.stringify(unit));
+      clonedUnit.tasks.forEach(task => {
+        task.questions.forEach(q => {
+          if (q.type === 'order' && q.originalWords) {
+            q.scrambled = shuffleArray(q.originalWords);
+          }
+          if (q.type === 'dialogue_order' && q.dialogueSteps) {
+            const indices = q.dialogueSteps.map((_, i) => i);
+            let shuffledIdx = shuffleArray(indices);
+            q.shuffledDialogue = shuffledIdx.map(idx => ({ ...q.dialogueSteps[idx], originalIndex: idx }));
+          }
+        });
+      });
+      return clonedUnit;
+    });
+
+    let currentUnitIdx = 0;
+    const userAnswers = {};
+    const unitCheckedState = {};
+
+    window.onload = function() {
+      const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      document.getElementById('print-date').innerText = `Date: ${today}`;
+      renderTabs();
+      renderUnit(currentUnitIdx);
+    };
+
+    function renderTabs() {
+      const container = document.getElementById('unit-tabs');
+      container.innerHTML = '';
+
+      unitsData.forEach((unit, idx) => {
+        const isActive = idx === currentUnitIdx;
+        const btn = document.createElement('button');
+        btn.onclick = () => switchUnit(idx);
+        btn.className = `flex-shrink-0 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm border transition flex items-center gap-2 ${
+          isActive 
+            ? 'bg-slate-900 text-white border-slate-900 shadow-sm' 
+            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+        }`;
+
+        const isChecked = unitCheckedState[idx];
+        let statusBadge = isChecked ? `<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>` : '';
+        btn.innerHTML = `<span>Unit ${unit.number}</span>${statusBadge}`;
+        container.appendChild(btn);
+      });
+
+      const isSummaryActive = currentUnitIdx === unitsData.length;
+      const summaryBtn = document.createElement('button');
+      summaryBtn.onclick = () => switchUnit(unitsData.length);
+      summaryBtn.className = `flex-shrink-0 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm border transition flex items-center gap-1.5 ${
+        isSummaryActive
+          ? 'bg-amber-500 text-slate-900 border-amber-500 shadow-sm'
+          : 'bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100'
+      }`;
+      summaryBtn.innerHTML = `<i class="fa-solid fa-award text-xs"></i> Final summary`;
+      container.appendChild(summaryBtn);
+
+      const displayElem = document.getElementById('current-unit-display');
+      displayElem.innerText = currentUnitIdx < unitsData.length ? `Unit ${unitsData[currentUnitIdx].number}` : `Final summary`;
+
+      document.getElementById('prev-unit-btn').disabled = currentUnitIdx === 0;
+      const nextBtn = document.getElementById('next-unit-btn');
+      if (currentUnitIdx === unitsData.length - 1) {
+        nextBtn.innerHTML = `Summary <i class="fa-solid fa-flag-checkered"></i>`;
+      } else if (currentUnitIdx === unitsData.length) {
+        nextBtn.innerHTML = `Print / PDF <i class="fa-solid fa-file-pdf"></i>`;
+      } else {
+        nextBtn.innerHTML = `Next <i class="fa-solid fa-arrow-right"></i>`;
+      }
+
+      updateOverallScore();
+    }
+
+    function switchUnit(idx) {
+      if (idx >= 0 && idx < unitsData.length) {
+        currentUnitIdx = idx;
+        renderTabs();
+        renderUnit(currentUnitIdx);
+      } else if (idx === unitsData.length) {
+        unitsData.forEach((_, i) => { if (unitCheckedState[i] === undefined) unitCheckedState[i] = true; });
+        currentUnitIdx = idx;
+        renderTabs();
+        renderFinalSummary();
+      }
+    }
+
+    function navigateUnit(dir) {
+      if (currentUnitIdx === unitsData.length && dir === 1) {
+        window.print();
+        return;
+      }
+      switchUnit(currentUnitIdx + dir);
+    }
+
+    function renderUnit(idx) {
+      const container = document.getElementById('unit-content-container');
+      const unit = unitsData[idx];
+      const isChecked = !!unitCheckedState[idx];
+
+      let html = `
+        <div class="relative h-44 sm:h-48 w-full overflow-hidden bg-slate-900">
+          <img src="${unit.image}" alt="${unit.imageAlt}" class="w-full h-full object-cover object-center opacity-80">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
+          <div class="absolute bottom-4 left-6 right-6 text-white">
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">${unit.title}</h2>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 space-y-8">
+      `;
+
+      unit.tasks.forEach(task => {
+        html += `
+          <div class="border-b border-slate-100 pb-6 last:border-0 last:pb-0">
+            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide mb-1 flex items-center gap-2">
+              <i class="fa-solid fa-circle-dot text-amber-500 text-xs"></i> ${task.title}
+            </h3>
+            <p class="text-xs text-slate-500 mb-4">${task.instruction}</p>
+        `;
+
+        if (task.contextText) {
+          html += `
+            <div class="bg-slate-100 border-l-4 border-brand-600 p-4 rounded-r-xl mb-5 text-xs sm:text-sm text-slate-700 leading-relaxed shadow-sm">
+              "${task.contextText}"
+            </div>
+          `;
+        }
+
+        html += `<div class="space-y-4">`;
+
+        task.questions.forEach(q => {
+          const savedVal = userAnswers[q.id] || '';
+
+          if (q.type === 'matching') {
+            html += `<div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40 space-y-3">`;
+            q.pairs.forEach((pair, pIdx) => {
+              const pairKey = `${q.id}_p${pIdx}`;
+              const pSaved = userAnswers[pairKey] || '';
+              let selectStyle = 'bg-white border-slate-300';
+              if (isChecked) {
+                selectStyle = (pSaved === pair.answer) ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+              }
+              html += `
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 p-2.5 bg-white border border-slate-200 rounded-lg">
+                  <span class="text-xs sm:text-sm text-slate-700 font-medium">${pair.item}</span>
+                  <select ${isChecked ? 'disabled' : ''} onchange="saveAns('${pairKey}', this.value)" class="px-3 py-1.5 rounded-lg border text-xs sm:text-sm focus:outline-none ${selectStyle}">
+                    <option value="">-- Select --</option>
+                    ${q.options.map(opt => `<option value="${opt}" ${pSaved === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                  </select>
+                </div>
+              `;
+            });
+            html += `</div>`;
+          } else if (q.type === 'cloze') {
+            html += `<div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40 text-xs sm:text-sm leading-relaxed text-slate-700 bg-white p-4 rounded-xl">`;
+            let paragraphHtml = q.template;
+            q.blanks.forEach(b => {
+              const bKey = `${q.id}_${b.id}`;
+              const bSaved = userAnswers[bKey] || '';
+              let bStyle = 'border-slate-300 bg-slate-100';
+              if (isChecked) {
+                bStyle = (bSaved === b.answer) ? 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-100 border-rose-400 text-rose-900 font-bold';
+              }
+              const selectHtml = `
+                <select ${isChecked ? 'disabled' : ''} onchange="saveAns('${bKey}', this.value)" class="inline-block mx-1 px-2 py-1 rounded border text-xs font-semibold ${bStyle}">
+                  <option value="">[select...]</option>
+                  ${b.options.map(opt => `<option value="${opt}" ${bSaved === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                </select>
+              `;
+              paragraphHtml = paragraphHtml.replace(`[${b.id}]`, selectHtml);
+            });
+            html += paragraphHtml + `</div>`;
+          } else if (q.type === 'categorize') {
+            html += `<div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40 space-y-2.5">`;
+            q.items.forEach((item, itemIdx) => {
+              const itemKey = `${q.id}_i${itemIdx}`;
+              const itemSaved = userAnswers[itemKey] || '';
+              let catStyle = 'bg-white border-slate-300';
+              if (isChecked) {
+                catStyle = (itemSaved === item.category) ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+              }
+              html += `
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 p-2.5 bg-white border border-slate-200 rounded-lg">
+                  <span class="text-xs sm:text-sm text-slate-700 font-medium">"${item.text}"</span>
+                  <select ${isChecked ? 'disabled' : ''} onchange="saveAns('${itemKey}', this.value)" class="px-3 py-1.5 rounded-lg border text-xs sm:text-sm focus:outline-none ${catStyle}">
+                    <option value="">-- Category --</option>
+                    ${q.categories.map(cat => `<option value="${cat}" ${itemSaved === cat ? 'selected' : ''}>${cat}</option>`).join('')}
+                  </select>
+                </div>
+              `;
+            });
+            html += `</div>`;
+          } else if (q.type === 'dialogue_order') {
+            html += `<div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40 space-y-2.5">`;
+            q.shuffledDialogue.forEach((step, dIdx) => {
+              const dKey = `${q.id}_d${dIdx}`;
+              const dSaved = userAnswers[dKey] || '';
+              let dStyle = 'bg-white border-slate-300';
+              const correctPosition = String(step.originalIndex + 1);
+              if (isChecked) {
+                dStyle = (dSaved === correctPosition) ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+              }
+              html += `
+                <div class="flex items-center gap-3 p-2.5 bg-white border border-slate-200 rounded-lg">
+                  <select ${isChecked ? 'disabled' : ''} onchange="saveAns('${dKey}', this.value)" class="px-2.5 py-1 rounded border text-xs font-bold ${dStyle}">
+                    <option value="">#</option>
+                    ${Array.from({length: q.shuffledDialogue.length}, (_, i) => i + 1).map(num => `<option value="${num}" ${dSaved === String(num) ? 'selected' : ''}>${num}</option>`).join('')}
+                  </select>
+                  <span class="text-xs sm:text-sm text-slate-800"><strong class="text-slate-900">${step.speaker}:</strong> "${step.text}"</span>
+                </div>
+              `;
+            });
+            html += `</div>`;
+          } else if (q.type === 'matrix') {
+            html += `
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40">
+                <table class="w-full text-left text-xs sm:text-sm">
+                  <thead>
+                    <tr class="border-b border-slate-200 text-slate-500 uppercase text-[11px]">
+                      <th class="pb-2">Time expression</th>
+                      <th class="pb-2 text-right">Preposition</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+            `;
+            q.rows.forEach((r, rIdx) => {
+              const rKey = `${q.id}_r${rIdx}`;
+              const rSaved = userAnswers[rKey] || '';
+              let rStyle = 'bg-white border-slate-300';
+              if (isChecked) {
+                rStyle = (rSaved === r.answer) ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+              }
+              html += `
+                <tr>
+                  <td class="py-2.5 font-medium text-slate-700">${r.expression}</td>
+                  <td class="py-2.5 text-right">
+                    <select ${isChecked ? 'disabled' : ''} onchange="saveAns('${rKey}', this.value)" class="px-3 py-1 rounded-lg border text-xs font-semibold ${rStyle}">
+                      <option value="">-- Select --</option>
+                      ${r.options.map(opt => `<option value="${opt}" ${rSaved === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                    </select>
+                  </td>
+                </tr>
+              `;
+            });
+            html += `</tbody></table></div>`;
+          } else if (q.type === 'tf') {
+            html += `
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40">
+                <p class="text-xs sm:text-sm font-semibold text-slate-800 mb-2.5">${q.question}</p>
+                <div class="flex gap-3">
+            `;
+            ['False', 'True'].forEach(option => {
+              const isSelected = savedVal === option;
+              let styleClass = 'bg-white border-slate-200 text-slate-700 hover:border-brand-600';
+              if (isChecked) {
+                if (option === q.answer) {
+                  styleClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold';
+                } else if (isSelected && option !== q.answer) {
+                  styleClass = 'bg-rose-50 border-rose-400 text-rose-800 line-through';
+                }
+              }
+              html += `
+                <label class="flex-1 sm:flex-none sm:w-32 flex items-center justify-center gap-2 p-2 rounded-lg border text-xs sm:text-sm cursor-pointer transition ${styleClass}">
+                  <input type="radio" name="${q.id}" value="${option}" ${isSelected ? 'checked' : ''} ${isChecked ? 'disabled' : ''} 
+                    onchange="saveAns('${q.id}', '${option}')" class="text-brand-600">
+                  <span>${option}</span>
+                </label>
+              `;
+            });
+            html += `</div></div>`;
+          } else if (q.type === 'mcq') {
+            html += `
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40">
+                <p class="text-xs sm:text-sm font-semibold text-slate-800 mb-2.5">${q.question}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            `;
+            q.options.forEach(opt => {
+              const isSelected = savedVal === opt;
+              let styleClass = 'bg-white border-slate-200 text-slate-700 hover:border-brand-600';
+              if (isChecked) {
+                if (opt === q.answer) {
+                  styleClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold';
+                } else if (isSelected && opt !== q.answer) {
+                  styleClass = 'bg-rose-50 border-rose-400 text-rose-800 line-through';
+                }
+              }
+              html += `
+                <label class="flex items-center gap-2 p-2 rounded-lg border text-xs sm:text-sm cursor-pointer transition ${styleClass}">
+                  <input type="radio" name="${q.id}" value="${opt}" ${isSelected ? 'checked' : ''} ${isChecked ? 'disabled' : ''} 
+                    onchange="saveAns('${q.id}', '${opt}')" class="text-brand-600">
+                  <span>${opt}</span>
+                </label>
+              `;
+            });
+            html += `</div></div>`;
+          } else if (q.type === 'order') {
+            let inputStyle = 'bg-white border-slate-300';
+            const normUser = cleanText(savedVal);
+            const normAns = cleanText(q.answer);
+
+            if (isChecked) {
+              const isCorrect = normUser === normAns;
+              inputStyle = isCorrect ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+            }
+
+            html += `
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40">
+                <p class="text-xs sm:text-sm font-semibold text-slate-800 mb-2">${q.question}</p>
+                <div class="mb-2">
+                  <div class="flex flex-wrap gap-1.5 p-2 bg-slate-100 rounded-xl border border-slate-200">
+                    ${q.scrambled.map(w => `
+                      <button type="button" onclick="appendWordChip('${q.id}', '${w}')" ${isChecked ? 'disabled' : ''} 
+                        class="bg-white hover:bg-amber-100 text-slate-800 font-medium px-2.5 py-1 rounded-lg border border-slate-300 text-xs sm:text-sm transition disabled:opacity-50">
+                        + ${w}
+                      </button>
+                    `).join('')}
+                    <button type="button" onclick="clearWordChip('${q.id}')" ${isChecked ? 'disabled' : ''} 
+                      class="ml-auto text-xs text-rose-600 font-bold px-2 py-1 rounded bg-rose-50 border border-rose-200">
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <input type="text" id="input_${q.id}" value="${savedVal}" ${isChecked ? 'disabled' : ''} placeholder="Click buttons or type here..." 
+                    oninput="saveAns('${q.id}', this.value)"
+                    class="w-full px-3.5 py-2 rounded-lg border text-xs sm:text-sm focus:outline-none ${inputStyle}">
+                  ${isChecked ? `<span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-3 py-1.5 rounded-lg">Target: "${q.answer}"</span>` : ''}
+                </div>
+              </div>
+            `;
+          } else if (q.type === 'fill') {
+            let inputStyle = 'bg-white border-slate-300';
+            const normUser = cleanText(savedVal);
+            const normAns = cleanText(q.answer);
+
+            if (isChecked) {
+              const isCorrect = normUser === normAns;
+              inputStyle = isCorrect ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-bold' : 'bg-rose-50 border-rose-400 text-rose-900 font-bold';
+            }
+
+            html += `
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-100/40">
+                <p class="text-xs sm:text-sm font-semibold text-slate-800 mb-2.5">${q.question}</p>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <input type="text" value="${savedVal}" ${isChecked ? 'disabled' : ''} placeholder="${q.placeholder}" 
+                    oninput="saveAns('${q.id}', this.value)"
+                    class="w-full sm:w-72 px-3.5 py-2 rounded-lg border text-xs sm:text-sm focus:outline-none ${inputStyle}">
+                  ${isChecked ? `<span class="text-xs font-semibold text-emerald-800 bg-emerald-100 px-3 py-1.5 rounded-lg">Answer: ${q.answer}</span>` : ''}
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        html += `</div></div>`;
+      });
+
+      const { unitScore, unitTotal } = calculateUnitScore(unit, idx);
+
+      html += `
+          <div class="mt-6 pt-5 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              ${isChecked ? `
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold ${unitScore === unitTotal ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'}">
+                  Score: ${unitScore} / ${unitTotal} correct
+                </div>
+              ` : `<p class="text-xs text-slate-500">Complete the questions and click "Check answers".</p>`}
+            </div>
+
+            <div class="flex gap-2 w-full sm:w-auto">
+              ${isChecked ? `
+                <button onclick="retryCurrentUnit()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-1.5">
+                  <i class="fa-solid fa-rotate-left"></i> Retry
+                </button>
+              ` : ''}
+              <button onclick="checkAnswers()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-check"></i> Check answers
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function calculateUnitScore(unit, idx) {
+      let unitScore = 0;
+      let unitTotal = 0;
+      unit.tasks.forEach(t => {
+        t.questions.forEach(q => {
+          if (q.type === 'matching') {
+            q.pairs.forEach((pair, pIdx) => {
+              unitTotal++;
+              if ((userAnswers[`${q.id}_p${pIdx}`] || '') === pair.answer) unitScore++;
+            });
+          } else if (q.type === 'cloze') {
+            q.blanks.forEach(b => {
+              unitTotal++;
+              if ((userAnswers[`${q.id}_${b.id}`] || '') === b.answer) unitScore++;
+            });
+          } else if (q.type === 'categorize') {
+            q.items.forEach((item, itemIdx) => {
+              unitTotal++;
+              if ((userAnswers[`${q.id}_i${itemIdx}`] || '') === item.category) unitScore++;
+            });
+          } else if (q.type === 'dialogue_order') {
+            q.shuffledDialogue.forEach((step, dIdx) => {
+              unitTotal++;
+              if ((userAnswers[`${q.id}_d${dIdx}`] || '') === String(step.originalIndex + 1)) unitScore++;
+            });
+          } else if (q.type === 'matrix') {
+            q.rows.forEach((r, rIdx) => {
+              unitTotal++;
+              if ((userAnswers[`${q.id}_r${rIdx}`] || '') === r.answer) unitScore++;
+            });
+          } else {
+            unitTotal++;
+            if (cleanText(userAnswers[q.id] || '') === cleanText(q.answer)) unitScore++;
+          }
+        });
+      });
+      return { unitScore, unitTotal };
+    }
+
+    function appendWordChip(qId, word) {
+      const input = document.getElementById(`input_${qId}`);
+      if (!input) return;
+      let current = input.value.trim();
+      current = current.length > 0 ? current + " " + word : word;
+      input.value = current;
+      saveAns(qId, current);
+    }
+
+    function clearWordChip(qId) {
+      const input = document.getElementById(`input_${qId}`);
+      if (!input) return;
+      input.value = "";
+      saveAns(qId, "");
+    }
+
+    function cleanText(text) {
+      return text.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s+/g, " ");
+    }
+
+    function saveAns(qId, value) { userAnswers[qId] = value; }
+    function checkAnswers() { unitCheckedState[currentUnitIdx] = true; renderTabs(); renderUnit(currentUnitIdx); }
+
+    function retryCurrentUnit() {
+      const unit = unitsData[currentUnitIdx];
+      unit.tasks.forEach(task => {
+        task.questions.forEach(q => {
+          if (q.type === 'matching') q.pairs.forEach((_, pIdx) => delete userAnswers[`${q.id}_p${pIdx}`]);
+          else if (q.type === 'cloze') q.blanks.forEach(b => delete userAnswers[`${q.id}_${b.id}`]);
+          else if (q.type === 'categorize') q.items.forEach((_, itemIdx) => delete userAnswers[`${q.id}_i${itemIdx}`]);
+          else if (q.type === 'dialogue_order') q.shuffledDialogue.forEach((_, dIdx) => delete userAnswers[`${q.id}_d${dIdx}`]);
+          else if (q.type === 'matrix') q.rows.forEach((_, rIdx) => delete userAnswers[`${q.id}_r${rIdx}`]);
+          else delete userAnswers[q.id];
+        });
+      });
+      unitCheckedState[currentUnitIdx] = false;
+      renderTabs();
+      renderUnit(currentUnitIdx);
+    }
+
+    function updateOverallScore() {
+      let score = 0, total = 0;
+      unitsData.forEach((unit, idx) => {
+        const { unitScore, unitTotal } = calculateUnitScore(unit, idx);
+        total += unitTotal;
+        if (unitCheckedState[idx]) score += unitScore;
+      });
+      document.getElementById('overall-score').innerText = score;
+      document.getElementById('total-possible').innerText = total;
+    }
+
+    function renderFinalSummary() {
+      updateOverallScore();
+      let totalScore = 0, totalPossible = 0;
+      unitsData.forEach((unit, idx) => {
+        const { unitScore, unitTotal } = calculateUnitScore(unit, idx);
+        totalPossible += unitTotal;
+        if (unitCheckedState[idx]) totalScore += unitScore;
+      });
+
+      const percentage = totalPossible > 0 ? Math.round((totalScore / totalPossible) * 100) : 0;
+      const container = document.getElementById('unit-content-container');
+
+      let html = `
+        <div class="p-6 sm:p-8 max-w-3xl mx-auto">
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-slate-900 text-amber-400 text-2xl flex items-center justify-center mx-auto mb-3 shadow-lg border-2 border-amber-500">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-2xl font-extrabold text-slate-800 mt-1">Results summary</h2>
+          </div>
+
+          <div class="my-6 p-6 rounded-2xl border border-slate-200 bg-slate-100 text-center flex flex-col sm:flex-row items-center justify-around gap-4">
+            <div>
+              <div class="text-5xl font-extrabold text-brand-700">${percentage}%</div>
+              <div class="text-xs uppercase tracking-wider font-bold text-slate-400 mt-1">Total grade</div>
+            </div>
+            <div class="h-12 w-px bg-slate-200 hidden sm:block"></div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-800">${totalScore} / ${totalPossible}</div>
+              <div class="text-xs font-semibold text-slate-500 mt-0.5">Correct answers</div>
+            </div>
+          </div>
+
+          <div class="space-y-3 mb-8">
+      `;
+
+      unitsData.forEach((unit, idx) => {
+        const { unitScore: uScore, unitTotal: uTotal } = calculateUnitScore(unit, idx);
+        const isDone = unitCheckedState[idx];
+        const uPercent = uTotal > 0 ? Math.round((uScore / uTotal) * 100) : 0;
+
+        html += `
+          <div class="p-4 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div><span class="font-bold text-slate-800 text-sm block">${unit.title}</span></div>
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-semibold text-slate-600">${uScore} of ${uTotal} correct (${uPercent}%)</span>
+              <span class="px-2.5 py-1 rounded-full text-xs font-bold ${isDone && uPercent >= 70 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-900'}">
+                ${isDone ? (uPercent >= 70 ? 'Passed' : 'Review') : 'Pending'}
+              </span>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 no-print">
+            <div>
+              <h4 class="text-xs font-bold text-amber-900 uppercase">Save your test result</h4>
+              <p class="text-xs text-amber-800 mt-0.5">Download or print your transcript.</p>
+            </div>
+            <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow flex items-center justify-center gap-2">
+              <i class="fa-solid fa-file-pdf text-amber-400"></i> Download PDF
+            </button>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center no-print">
+            <button onclick="switchUnit(0)" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs sm:text-sm hover:bg-slate-100">
+              <i class="fa-solid fa-arrow-left mr-2"></i> Review Unit 9
+            </button>
+            <button onclick="resetAllTests()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs sm:text-sm hover:bg-slate-100">
+              <i class="fa-solid fa-rotate-right mr-2"></i> Restart
+            </button>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function resetAllTests() {
+      for (let k in userAnswers) delete userAnswers[k];
+      for (let k in unitCheckedState) delete unitCheckedState[k];
+      currentUnitIdx = 0;
+      renderTabs();
+      renderUnit(0);
+    }
+  </script>
+</body>
+</html>
